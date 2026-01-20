@@ -6,3 +6,4 @@ loader
 *.log
 hydrate
 packages/stencil-lib/components
+.stencil
