@@ -1,27 +1,30 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-// Reload page when stencil packages are recompiled (for local dev with linked packages)
+// Full page reload to catch when linked stencil packages are recompiled
+// probs not a good idea in real life
 
-const HASH_KEY = 'stencil-last-hash';
+const HASH_KEY = "stencil-last-hash";
 
 export function StencilReloader() {
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') return;
+    if (process.env.NODE_ENV !== "development") return;
 
     // Hook into Next.js HMR WebSocket (use wss:// for HTTPS)
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const ws = new WebSocket(`${protocol}//${window.location.host}/_next/webpack-hmr`);
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    const ws = new WebSocket(
+      `${protocol}//${window.location.host}/_next/webpack-hmr`
+    );
 
     ws.onmessage = (event) => {
       try {
-        const messages = event.data.split('\n').filter(Boolean);
+        const messages = event.data.split("\n").filter(Boolean);
         for (const msg of messages) {
           const data = JSON.parse(msg);
 
           // Look for built action with a hash
-          if (data.action === 'built' && data.hash) {
+          if (data.action === "built" && data.hash) {
             const lastHash = sessionStorage.getItem(HASH_KEY);
 
             if (lastHash && lastHash !== data.hash) {

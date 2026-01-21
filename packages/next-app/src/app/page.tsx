@@ -1,4 +1,4 @@
-import { InputDemo } from './components/InputDemo';
+import { InputDemo } from "./components/InputDemo";
 
 export default function Home() {
   return (
