@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 
-// Full page reload to catch when linked stencil packages are recompiled
-// probs not a good idea in real life
+// Full page reload when linked stencil packages change
+// Only reloads if Fast Refresh can't handle the update (external packages)
 
 const HASH_KEY = "stencil-last-hash";
 
@@ -11,11 +11,12 @@ export function StencilReloader() {
   useEffect(() => {
     if (process.env.NODE_ENV !== "development") return;
 
-    // Hook into Next.js HMR WebSocket (use wss:// for HTTPS)
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const ws = new WebSocket(
       `${protocol}//${window.location.host}/_next/webpack-hmr`
     );
+
+    let pendingHash: string | null = null;
 
     ws.onmessage = (event) => {
       try {
@@ -23,19 +24,27 @@ export function StencilReloader() {
         for (const msg of messages) {
           const data = JSON.parse(msg);
 
-          // Look for built action with a hash
+          // Store hash when build completes
           if (data.action === "built" && data.hash) {
             const lastHash = sessionStorage.getItem(HASH_KEY);
-
             if (lastHash && lastHash !== data.hash) {
-              // Hash changed - a real rebuild happened, reload
+              // New build - wait to see if Fast Refresh handles it
+              pendingHash = data.hash;
+              // Give Fast Refresh 500ms to apply the update
+              setTimeout(() => {
+                if (pendingHash) {
+                  sessionStorage.setItem(HASH_KEY, pendingHash);
+                  window.location.reload();
+                }
+              }, 500);
+            } else {
               sessionStorage.setItem(HASH_KEY, data.hash);
-              window.location.reload();
-              return;
             }
+          }
 
-            // Store current hash for comparison
-            sessionStorage.setItem(HASH_KEY, data.hash);
+          // Fast Refresh succeeded - cancel pending reload
+          if (data.event === "client-success" || data.action === "sync") {
+            pendingHash = null;
           }
         }
       } catch {
