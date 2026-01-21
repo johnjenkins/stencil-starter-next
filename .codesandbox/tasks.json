@@ -21,17 +21,17 @@
       "name": "start:stencil",
       "command": "pnpm start:stencil"
     },
-    "start:angular-wrapper": {
-      "name": "start:angular-wrapper",
-      "command": "pnpm start:angular-wrapper"
+    "start:next-wrapper": {
+      "name": "start:next-wrapper",
+      "command": "pnpm start:next-wrapper"
     },
-    "start:angular-app": {
-      "name": "start:angular-app",
-      "command": "pnpm start:angular-app"
+    "start:next-app": {
+      "name": "start:next-app",
+      "command": "pnpm start:next-app"
     },
-    "start:angular-app:wait": {
-      "name": "start:angular-app:wait",
-      "command": "pnpm start:angular-app:wait"
+    "start:next-app:wait": {
+      "name": "start:next-app:wait",
+      "command": "pnpm start:next-app:wait"
     },
     "start:reload-trigger": {
       "name": "start:reload-trigger",
@@ -45,13 +45,13 @@
       "name": "build:stencil",
       "command": "pnpm build:stencil"
     },
-    "build:angular-wrapper": {
-      "name": "build:angular-wrapper",
-      "command": "pnpm build:angular-wrapper"
+    "build:next-wrapper": {
+      "name": "build:next-wrapper",
+      "command": "pnpm build:next-wrapper"
     },
-    "build:angular-app": {
-      "name": "build:angular-app",
-      "command": "pnpm build:angular-app"
+    "build:next-app": {
+      "name": "build:next-app",
+      "command": "pnpm build:next-app"
     }
   }
 }

@@ -8,7 +8,7 @@
 /* eslint-disable */
 
 import { type ExampleInputCustomEvent } from "@example/stencil-lib";
-import { ExampleInput as ExampleInputElement, defineCustomElement as defineExampleInput } from "@example/stencil-lib/components/example-input.js";
+import { ExampleInput as ExampleInputElement, defineCustomElement as defineExampleInput } from "@example/stencil-lib/dist/components/example-input.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';

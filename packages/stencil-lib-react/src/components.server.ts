@@ -8,7 +8,7 @@
 // @ts-ignore - ignore potential type issues as the project is importing itself
 import { type ExampleInputCustomEvent } from "@example/stencil-lib";
 import * as clientComponents from '@example/stencil-lib-react';
-import { ExampleInput as ExampleInputElement } from "@example/stencil-lib/components/example-input.js";
+import { ExampleInput as ExampleInputElement } from "@example/stencil-lib/dist/components/example-input.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent, type HydrateModule, type ReactWebComponent, type SerializeShadowRootOptions } from '@stencil/react-output-target/ssr';
 

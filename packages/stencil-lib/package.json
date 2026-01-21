@@ -27,22 +27,21 @@
       "require": "./loader/index.js",
       "default": "./loader/index.js"
     },
-    "./components/*.js": {
-      "types": "./dist/types/components/*.d.ts",
-      "import": "./components/*.js"
+    "./dist/components/*.js": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
     },
     "./components": {
       "types": "./dist/types/components.d.ts",
-      "import": "./dist/index.js",
+      "import": "./dist/components/index.js",
       "require": "./dist/index.cjs.js",
-      "default": "./dist/index.js"
+      "default": "./dist/components/index.js"
     }
   },
   "files": [
     "dist/",
     "loader/",
-    "hydrate/",
-    "components/"
+    "hydrate/"
   ],
   "scripts": {
     "build": "stencil build --prod",

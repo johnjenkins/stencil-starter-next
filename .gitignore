@@ -5,5 +5,4 @@ loader
 .DS_Store
 *.log
 hydrate
-packages/stencil-lib/components
 .stencil
