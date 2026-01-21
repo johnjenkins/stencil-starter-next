@@ -34,8 +34,11 @@ export function StencilReloader() {
         for (const msg of messages) {
           const data = JSON.parse(msg);
 
+          // Next.js wraps HMR data in an "event" field for some message types
+          const action = data.action || data.event;
+
           // Reload on built action (webpack finished compiling)
-          if (data.action === 'built') {
+          if (action === 'built') {
             sessionStorage.setItem(RELOAD_KEY, String(Date.now()));
             window.location.reload();
             return;
