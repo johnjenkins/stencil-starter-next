@@ -59,7 +59,7 @@ export class ExampleInput {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />
-          <span class="helper">?
+          <span class="helper">
             <slot name="helper"></slot>
           </span>
         </label>

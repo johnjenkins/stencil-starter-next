@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { StencilReloader } from './StencilReloader';
 
 export const metadata: Metadata = {
   title: 'Stencil + Next.js Integration',
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <StencilReloader />
         {children}
       </body>
     </html>
