@@ -18,8 +18,9 @@ export function StencilReloader() {
       }
     };
 
-    // Hook into Next.js HMR WebSocket
-    const ws = new WebSocket(`ws://${window.location.host}/_next/webpack-hmr`);
+    // Hook into Next.js HMR WebSocket (use wss:// for HTTPS)
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const ws = new WebSocket(`${protocol}//${window.location.host}/_next/webpack-hmr`);
 
     ws.onmessage = (event) => {
       try {
