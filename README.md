@@ -1,62 +1,23 @@
-# Stencil Starter Next
+# Stencil + NextJs Starter
 
-A minimal reproduction monorepo for testing Stencil components with Next.js output targets.
+A minimal reproduction monorepo for testing Stencil components with React output target within a Next.js application.
 
-## Structure
+## Versions
 
-```
-packages/
-├── stencil-lib        # Stencil web components (with hydrate output for SSR)
-├── stencil-lib-react  # React wrapper bindings (client + server exports)
-└── next-app           # Demo Next.js 15 application
-```
+- `@stencil/core`: latest
+- `@stencil/react-output-target`: latest
+- `react`: `^19.0.0`
+- `next`: `^15.0.0` (using app router)
 
-## Requirements
-
-- Node.js >= 22.0.0
-- pnpm 9.15.0
-
-## Getting Started
+## Setup
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Start development (builds libs then starts Next.js dev server)
+# Start development mode (builds stencil first, then watches all)
 pnpm start
-
-# Production build
-pnpm build
 ```
 
-## Development
-
-The `pnpm start` command will:
-
-1. Build the Stencil component library (including hydrate scripts for SSR)
-2. Build the React wrapper library
-3. Start the Next.js dev server
-
-The Next.js app will be available at http://localhost:3000
-
-## Packages
-
-### @example/stencil-lib
-
-The core Stencil component library with:
-- `dist/` - Standard distribution
-- `loader/` - Custom element loader
-- `hydrate/` - Hydrate scripts for SSR
-
-### @example/stencil-lib-react
-
-React bindings with two export paths:
-- `@example/stencil-lib-react` - Client-side components
-- `@example/stencil-lib-react/next` - Server/client components for Next.js
-
-### next-app
-
-A demo Next.js 15 application using the App Router that demonstrates:
-- Server-side rendering with Stencil components
-- Client-side hydration with declarative shadow DOM
-- Event handling in client components
+The development server will start at http://localhost:3000/
+In watch mode all changes to the Stencil components will automatically rebuild the React wrappers and reload the Next.js app.
